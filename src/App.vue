@@ -1,14 +1,14 @@
 <template>
 <div id="app">
     <ul id="dropdown1" class="dropdown-content">
-      <li><a href="#!">Cadastrar Evento</a></li>
-      <li><a href="#!">Cadastrar Periodos de Inatividade</a></li>
+      <li><router-link to="/cad-evento">Cadastrar Evento</router-link></li>
+      <!-- <li><a href="#!">Cadastrar Periodos de Inatividade</a></li> -->
       <li class="divider"></li>
       <li><a href="#!">three</a></li>
     </ul>
   <nav>
     <div class="nav-wrapper teal">
-      <a href="#" class="brand-logo">Logo</a>
+      <router-link to="/" class="brand-logo"><i class="material-icons">calendar_today</i> Agenda</router-link>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="col l4">
           <a class="dropdown-trigger" data-target="dropdown1">
@@ -40,6 +40,9 @@ export default {
     };
   },
   mounted: () => {
+    M.AutoInit();
+  },
+  updated: () => {
     M.AutoInit();
   }
 };

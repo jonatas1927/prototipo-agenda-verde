@@ -1,5 +1,5 @@
 <template>
-    <div id="fullcalendar" class="browser-default"></div>
+    <div id="fullcalendar" class="col l12 s12 m12"></div>
 </template>
 <script>
 import $ from "jquery";
@@ -11,20 +11,11 @@ export default {
   },
   mounted: () => {
     $("#fullcalendar").fullCalendar({
-      //   header: { center: "month,agendaWeek" }, // buttons for switching between views
-
-      views: {
-        month: {
-          // name of view
-          titleFormat: "DD/MM/YYYY"
-          // other view-specific options here
-        }
-      },
+      defaultView: "month",
       locale: "pt-BR",
       navLinks: true,
       navLinkDayClick: function(date, jsEvent) {
         console.log("day", date.format()); // date is a moment
-        console.log("coords", jsEvent.pageX, jsEvent.pageY);
       }
     });
     var calendar = $("#calendar").fullCalendar("getCalendar");
@@ -35,8 +26,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-#fullcalendar {
-  width: 100%;
-  height: 100%;
-}
+// #fullcalendar {
+//   width: 100%;
+//   height: 100%;
+// }
 </style>
