@@ -2,9 +2,9 @@
 <div id="app">
     <ul id="dropdown1" class="dropdown-content">
       <li><router-link to="/cad-evento">Cadastrar Evento</router-link></li>
-      <!-- <li><a href="#!">Cadastrar Periodos de Inatividade</a></li> -->
+      <!-- <li><a href="#!">Cadastrar Periodos de Inatividade</a></li>
       <li class="divider"></li>
-      <li><a href="#!">three</a></li>
+      <li><a href="#!">three</a></li> -->
     </ul>
   <nav>
     <div class="nav-wrapper teal">

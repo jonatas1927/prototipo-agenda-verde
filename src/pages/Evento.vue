@@ -27,13 +27,13 @@
 </div>
 </template>
 <script>
+
 export default {
   name: "Evento",
   data() {
     return {};
   },
   mounted: () => {
-    console.log("ashduhausda");
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll(".datepicker");
       var instances = M.Datepicker.init(elems, {
