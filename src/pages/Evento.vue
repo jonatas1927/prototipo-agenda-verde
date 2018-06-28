@@ -22,6 +22,17 @@
                 <input type="text" id="local" class="validate" disabled v-model="local">
                 <label for="local">Local</label>
             </div>
+             <div class="row" style="margin: 5px;">
+              <div class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <!-- <i class="material-icons prefix"></i> -->
+                    <input type="text" id="autocomplete-input" class="autocomplete" v-model="Cliente">
+                    <label for="autocomplete-input">Cliente</label>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class=" input-field col s12 m12 l6">
               <a class="waves-effect waves-light btn" v-on:click="salvar()"><i class="material-icons right">save</i>Salvar</a>
             </div>
@@ -41,7 +52,8 @@ export default {
       start: this.$route.params.day,
       horario: null,
       horasEstimadas: "",
-      local: "Hospital de Clinicas Gerais"
+      local: "Hospital de Clinicas Gerais",
+      Cliente: ''
     };
   },
   methods: {
@@ -49,13 +61,13 @@ export default {
       let data = this._data;
       new moment(data.start);
       console.log(this);
-      data.start = data.start+'T'+data.horario
-      console.log(data)
+      data.start = data.start + "T" + data.horario;
+      console.log(data);
       eventosClass.adicionar(data);
     }
   },
-  mounted: function(){
-    console.log(this)
+  mounted: function() {
+    console.log(this);
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll(".datepicker");
       var instances = M.Datepicker.init(elems, {
@@ -104,6 +116,19 @@ export default {
           weekdaysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
           weekdaysAbbrev: ["D", "S", "T", "Q", "Q", "S", "S"]
         }
+      });
+    });
+    let data = {};
+    if (window.localStorage.getItem("clientes")) {
+      let clientes = JSON.parse(window.localStorage.getItem("clientes"));
+      clientes.map(cliente => {
+        data[cliente.Nome] = cliente;
+      });
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      var elems = document.querySelectorAll(".autocomplete");
+      var instances = M.Autocomplete.init(elems, {
+        data: data
       });
     });
   }
