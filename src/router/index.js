@@ -7,19 +7,18 @@ import Login from '@/pages/Login';
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    }, {
-      path: '/',
-      name: 'Calendar',
-      component: Calendar,
-    }, {
-      path: '/cad-evento/:day',
-      name: 'Eventos',
-      component: Evento,
-    }],
+  routes: [{
+    path: '/login',
+    name: 'Login',
+    component: Login
+  }, {
+    path: '/',
+    name: 'Calendar',
+    component: Calendar,
+  }, {
+    path: '/cad-evento/:day',
+    name: 'Eventos',
+    component: Evento
+  }],
   mode: "history"
 });

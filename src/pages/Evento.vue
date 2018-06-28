@@ -3,37 +3,60 @@
     <form class="col s12 center white">
         <div class="row">
             <div class="input-field col s12 l4">
-                <input id="descricao" type="text" class="validate">
+                <input id="descricao" type="text" class="validate" v-model="title">
                 <label for="descricao">Descrição</label>
             </div>
-            <div class="input-field col s12 l2">
-                 <input type="text" class="datepicker" id="Data">
+             <!-- <div class="input-field col s12 l2">
+                 <input type="text" class="datepicker" id="Data" v-model="start">
                 <label for="Data">Data</label>
-            </div>
+            </div>  -->
             <div class="input-field col s12 l3">
-                <input type="text" class="timepicker" id="Horario">
+                <input type="text" class="timepicker" id="Horario" v-model="horario">
                 <label for="Horario">Horario</label>
             </div>
             <div class=" input-field col s12 m12 l6">
-                <input type="number" id="horasEstimadas" class="validate">
+                <input type="number" id="horasEstimadas" class="validate" v-model="horasEstimadas">
                 <label for="horasEstimadas">Horas Estimadas</label>
             </div>
             <div class=" input-field col s12 m12 l6">
-                <input type="text" id="local" class="validate">
+                <input type="text" id="local" class="validate" v-model="local">
                 <label for="local">Local</label>
+            </div>
+            <div class=" input-field col s12 m12 l6">
+              <a class="waves-effect waves-light btn" v-on:click="salvar()"><i class="material-icons right">save</i>Salvar</a>
             </div>
         </div>
     </form>
 </div>
 </template>
 <script>
-
+import eventosClass from "../eventos";
+import * as moment from "moment";
+console.log(eventosClass.retornaEventos());
 export default {
   name: "Evento",
   data() {
-    return {};
+    return {
+      title: "",
+      start: this.$route.params.day,
+      horario: null,
+      horasEstimadas: "",
+      local: ""
+    };
   },
-  mounted: () => {
+  methods: {
+    salvar: function() {
+      let data = this._data;
+      new moment(data.start);
+      console.log(this);
+      eventosClass.adicionar(this._data);
+    }
+  },
+  mounted: function() {
+    console.log(
+      "ashduasdhsaduashaihduiashdasuidhasuihdasuidhaisudhasdhashuiashdui"
+    );
+    console.log(this.$route.params.day);
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll(".datepicker");
       var instances = M.Datepicker.init(elems, {

@@ -2,34 +2,30 @@
     <div id="fullcalendar" class="col l12 s12 m12"></div>
 </template>
 <script>
-import {Eventos} from '../eventos'
+import eventosClass from "../eventos";
 import $ from "jquery";
 import "fullcalendar";
 import "materialize-css";
 export default {
   data() {
     return {
-      eventos: new Eventos().retornaEventos()
+      eventos: eventosClass.retornaEventos()
     };
   },
-  mounted: ()=> {
-    console.log(this)
+  mounted: function() {
+    console.log(this);
+    var thisComponent = this;
     $("#fullcalendar").fullCalendar({
-      events: this.a.data().eventos,
+      events: this.eventos,
       defaultView: "month",
       locale: "pt-BR",
       navLinks: true,
       navLinkDayClick: function(date, jsEvent) {
-        console.log("day", date.format()); // date is a moment
-console.log()
-        window.location.href = '/evento-cad'+date.format();
-
-      },
+        thisComponent.$router.push("/cad-evento/" + date.format().toString());
+      }
     });
     var calendar = $("#calendar").fullCalendar("getCalendar");
-    calendar.on("dayClick", function(date, jsEvent, view) {
-      console.log("clicked on " + date.format());
-    });
+    // calendar.on("dayClick", function(date, jsEvent, view) {});
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <ul id="dropdown1" class="dropdown-content">
-      <li><router-link to="/cad-evento">Cadastrar Evento</router-link></li>
+      <li><router-link to="/cad-evento/">Cadastrar Evento</router-link></li>
       <!-- <li><a href="#!">Cadastrar Periodos de Inatividade</a></li>
       <li class="divider"></li>
       <li><a href="#!">three</a></li> -->
