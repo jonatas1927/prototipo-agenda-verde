@@ -32,11 +32,11 @@
 <script>
 import eventosClass from "../eventos";
 import * as moment from "moment";
-console.log(eventosClass.retornaEventos());
 export default {
   name: "Evento",
   data() {
     return {
+      id: '',
       title: "",
       start: this.$route.params.day,
       horario: null,
@@ -51,11 +51,21 @@ export default {
       console.log(this);
       data.start = data.start+'T'+data.horario
       console.log(data)
+      eventosClass.remover(data);
       eventosClass.adicionar(data);
     }
   },
   mounted: function(){
     console.log(this)
+
+    let evento = eventosClass.buscaPorId(this.$route.params.idEvento);
+      this.title = evento.title;
+      this.horario = evento.start;
+      this.horasEstimadas = evento.horasEstimadas;
+      this.local= evento.local;
+      M.AutoInit();
+
+
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll(".datepicker");
       var instances = M.Datepicker.init(elems, {

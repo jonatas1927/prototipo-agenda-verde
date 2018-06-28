@@ -22,6 +22,17 @@ export default {
       navLinks: true,
       navLinkDayClick: function(date, jsEvent) {
         thisComponent.$router.push("/cad-evento/" + date.format().toString());
+      },
+      eventClick: function(calEvent, jsEvent, view) {
+        console.log(calEvent);
+        let evento;
+        let eventos = eventosClass.retornaEventos();
+          eventos.map(esseEvento => {
+            if(esseEvento.Id === calEvent.Id)
+            evento = esseEvento
+          })
+          console.log(evento)
+          thisComponent.$router.push('/evento/Alteracao/'+evento.id)
       }
     });
     var calendar = $("#calendar").fullCalendar("getCalendar");

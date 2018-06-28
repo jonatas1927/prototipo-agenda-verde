@@ -1,24 +1,17 @@
 export class Eventos {
   constructor() {
     const data = this.formatDate(new Date());
-    const eventos = [{
+    let eventos = [{
         title: 'Prova de Gerenciamento de Projetos',
-        start: data,
-        id: 3
+        start: data+'T22:30:00',
+        id: 3,
+        local: 'SETREM Sala 505'
       },
-      {
-        title: 'event2',
-        start: '2018-06-05',
-        end: '2018-06-09',
-        id: 2
-      },
-      {
-        title: 'event3',
-        start: '2010-01-09T12:30:00',
-        allDay: false, // will make the time show,
-        id: 1
-      }
     ]
+    if(window.localStorage.getItem('eventos')){
+      let evt = window.localStorage.getItem('eventos');
+      eventos = JSON.parse(evt);
+    }
     window.localStorage.setItem('eventos', JSON.stringify(eventos));
   }
   retornaEventos() {
@@ -32,7 +25,24 @@ export class Eventos {
     objeto.id = eventos[eventos.length - 1].id + 1
     eventos.push(objeto)
     window.localStorage.setItem('eventos', JSON.stringify(eventos));
+  }
 
+  remover(objeto){
+    let eventosMantem = [];
+    let eventos = this.retornaEventos();
+      eventos.map(esseEvento => {
+        if(esseEvento.id != objeto.id) eventosMantem.push(esseEvento);
+      })
+      window.localStorage.setItem('eventos', JSON.stringify(eventosMantem));
+  }
+
+  buscaPorId(id){
+    let evento;
+    let eventos = this.retornaEventos();
+      eventos.map(esseEvento => {
+        if(esseEvento.id == id) evento = esseEvento;
+      })
+      return evento
   }
 
   formatDate(date) {
