@@ -3,6 +3,7 @@
     <ul id="dropdown1" class="dropdown-content col s12 l4 m5">
         <li>
             <router-link to="/cliente/lista">Clientes</router-link>
+            <router-link to="/produtos/lista">Produtos</router-link>
             <router-link to="/eventos-dia">Eventos em Lista</router-link>
         </li>
     </ul>

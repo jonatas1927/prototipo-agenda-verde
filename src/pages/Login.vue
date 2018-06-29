@@ -1,6 +1,6 @@
 <template>
     <div class="col s12">
-    
+
     <form>
       <div class="imgcontainer">
         <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">

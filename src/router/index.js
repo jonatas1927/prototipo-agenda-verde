@@ -7,7 +7,8 @@ import EventosHoje from '@/pages/EventosHoje';
 import EventoAlteracao from '@/pages/EventoAlteracao'
 import Cliente from '@/pages/Cliente'
 import ClienteLista from '@/pages/ClienteLista'
-
+import Produtos from '@/pages/Produtos'
+import ProdutosLista from '@/pages/ProdutosLista'
 Vue.use(Router);
 
 export default new Router({
@@ -39,6 +40,14 @@ export default new Router({
     path: '/cliente/lista',
     name: 'Clientes Lista',
     component: ClienteLista
+  }, {
+    path: '/produtos/lista',
+    name: 'Produtos Lista',
+    component: ProdutosLista
+  }, {
+    path: '/produtos/cadastro/:id',
+    name: 'Produtos Cadastro',
+    component: Produtos
   }],
   mode: "history"
 });

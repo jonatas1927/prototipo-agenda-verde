@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in clientes" :key="item.Id">
+          <tr v-for="item in produtos" :key="item.Id">
             <td>{{ item.Nome }}</td>
             <td>{{ item.CPF }}</td>
             <td>{{ item.RG }}</td>
@@ -21,16 +21,16 @@
         </tbody>
       </table>
         <div class=" input-field col s12 m12 l6 right">
-            <a class="waves-effect waves-light btn" v-on:click="novoCliente()"><i class="material-icons right">save</i>Novo Cliente</a>
+            <a class="waves-effect waves-light btn" v-on:click="novoproduto()"><i class="material-icons right">save</i>Novo produto</a>
         </div>
     </div>
 </template>
 <script>
 export default {
-  name: "ClienteLista",
+  name: "ProdutosLista",
   data() {
     return {
-      clientes: [
+      produtos: [
         {
           Nome: "Jônatas Thielke",
           CPF: "000-000-000-00",
@@ -42,14 +42,14 @@ export default {
     };
   },
   mounted: function() {
-    if (window.localStorage.getItem("clientes")) {
-      console.log(JSON.parse(window.localStorage.getItem("clientes")));
-      this.clientes = JSON.parse(window.localStorage.getItem("clientes"));
+    if (window.localStorage.getItem("produtos")) {
+      console.log(JSON.parse(window.localStorage.getItem("produtos")));
+      this.produtos = JSON.parse(window.localStorage.getItem("produtos"));
     }
   },
   methods: {
-    novoCliente: function() {
-      this.$router.push("/cliente/cadastro");
+    novoproduto: function() {
+      this.$router.push("/produtos/cadastro");
     }
   }
 };
