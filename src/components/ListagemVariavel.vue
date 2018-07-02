@@ -24,12 +24,9 @@
 export default {
   name: "ListagemVariavel",
   data() {
-    return {
-      lista: [],
-      atributosExibe: {}
-    };
+    return {};
   },
-  props: ["Tipo"],
+  props: ["atributosExibe", "lista"],
   mounted: function() {}
 };
 </script>
