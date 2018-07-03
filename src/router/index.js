@@ -9,6 +9,8 @@ import Cliente from '@/pages/Cliente'
 import ClienteLista from '@/pages/ClienteLista'
 import Produtos from '@/pages/Produtos'
 import ProdutosLista from '@/pages/ProdutosLista'
+import FormVariavel from '@/components/FormVariavel'
+import ListagemVariavel from '@/components/ListagemVariavel'
 Vue.use(Router);
 
 export default new Router({
@@ -48,6 +50,14 @@ export default new Router({
     path: '/produtos/cadastro/:id',
     name: 'Produtos Cadastro',
     component: Produtos
+  }, {
+    path: '/form/:nome',
+    name: 'Form Cadastro',
+    component: FormVariavel
+  }, {
+    path: '/list/:nome',
+    name: 'List',
+    component: ListagemVariavel
   }],
   mode: "history"
 });

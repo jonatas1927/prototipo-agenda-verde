@@ -1,7 +1,6 @@
 <template>
-<div class="input-field col s12 l12 m12">
-  <div v-for="campo of campos" :key="campo.Id" :id="'campo'+campo.id" v-html="htmlForm(campo)">
-
+<div class="row">
+  <div v-for="campo of pagina.campos" :key="campo.Id" :id="'campo'+campo.id" v-html="htmlForm(campo)">
   </div>
 </div>
 </template>
@@ -9,17 +8,18 @@
 export default {
   name: "FormVariavel",
   data() {
-    return {};
+    return {
+      pagina: JSON.parse(window.localStorage.getItem(this.$route.params.nome))
+    };
   },
-  props: ["campos", "nomeForm"],
   methods: {
     htmlForm(campo) {
+      console.log('campooooooooo',campo)
       switch (campo.type) {
         case "text":
           return `
-          <div class="input-field col s12">
-            <input id="${campo.id}" type="text" class="validate col
-              ${campo.class}">
+          <div class="input-field col ${campo.class} ">
+            <input id="${campo.id}" type="text">
             <label for="${campo.id}">${campo.nome}</label>
           </div>
         `;
@@ -34,7 +34,10 @@ export default {
           `;
         case "date":
           return `
-             <input type="text" class="datepicker col ${campo.class}">
+          <div class="input-field col ${campo.class} ">
+              <input type="text" class="datepicker" id="${campo.Id}">
+              <label for="${campo.id}">${campo.nome}</label>
+          </div>
           `;
           if (campo.config) {
             setTimeout(() => {
@@ -56,7 +59,7 @@ export default {
           .getValues();
       });
       console.log(objResposta);
-      const objetosJaInclusos = [];
+      let objetosJaInclusos = [];
       if (window.localStorage.getItem(this.nomeForm))
         objetosJaInclusos = JSON.parse(
           window.localStorage.getItem(this.nomeForm)

@@ -4,8 +4,8 @@
     <table>
       <thead>
         <tr>
-          <th v-for="attr in atributosExibe" :key="attr">
-            {{ attr }}
+          <th v-for="campo of atributosExibe.campos" :key="campo.Id">
+            {{ campo.nome }} 
           </th>
         </tr>
       </thead>
@@ -24,9 +24,13 @@
 export default {
   name: "ListagemVariavel",
   data() {
-    return {};
+    return {
+      lista: JSON.parse(window.localStorage.getItem('data'+ this.$route.params.nome)),
+      atributosExibe: JSON.parse(window.localStorage.getItem(this.$route.params.nome))
+    };
   },
-  props: ["atributosExibe", "lista"],
-  mounted: function() {}
+  mounted: function() {
+    console.log('hasuhsauh')
+  }
 };
 </script>
