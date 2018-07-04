@@ -5,6 +5,8 @@
             <router-link to="/cliente/lista">Clientes</router-link>
             <router-link to="/produtos/lista">Produtos</router-link>
             <router-link to="/eventos-dia">Eventos em Lista</router-link>
+            <router-link to="/cad-tela/">Cadastro de Tela</router-link>
+            <router-link v-for="pag in listaPaginas" :to="'/form/'+pag.nome" :key="pag.nome">{{pag.nome.toUpperCase()}}</router-link>
         </li>
     </ul>
     <nav>
@@ -41,7 +43,10 @@ export default {
           path: "/cad-inatividade"
         }
       ],
-      login: window.localStorage.getItem("login")
+      login: window.localStorage.getItem("login"),
+      listaPaginas: JSON.parse(
+        window.localStorage.getItem("paginasCadastradas")
+      )
     };
   },
   mounted: () => {

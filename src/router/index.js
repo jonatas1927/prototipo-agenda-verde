@@ -64,6 +64,10 @@ export default new Router({
     path: '/cad-tela/:nome',
     name: 'Tela',
     component: CadCamposVariaveis
+  }, {
+    path: '/cad-tela/',
+    name: 'Tela',
+    component: CadCamposVariaveis
   }],
   mode: "history"
 });

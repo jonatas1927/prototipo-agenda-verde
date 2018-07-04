@@ -2,6 +2,7 @@
 <div class="row">
   <div v-for="campo of pagina.campos" :key="campo.Id" :id="'campo'+campo.id" v-html="htmlForm(campo)">
   </div>
+  <a class="waves-effect waves-light btn"  v-on:click="salvar()">Salvar</a>
 </div>
 </template>
 <script>
@@ -14,11 +15,11 @@ export default {
   },
   methods: {
     htmlForm(campo) {
-      console.log('campooooooooo',campo)
+      console.log("campooooooooo", campo);
       switch (campo.type) {
         case "text":
           return `
-          <div class="input-field col ${campo.class} ">
+          <div class="input-field col ${campo.classe} ">
             <input id="${campo.id}" type="text">
             <label for="${campo.id}">${campo.nome}</label>
           </div>
@@ -34,7 +35,7 @@ export default {
           `;
         case "date":
           return `
-          <div class="input-field col ${campo.class} ">
+          <div class="input-field col ${campo.classe} ">
               <input type="text" class="datepicker" id="${campo.Id}">
               <label for="${campo.id}">${campo.nome}</label>
           </div>
@@ -72,6 +73,16 @@ export default {
         });
       } else objetosJaInclusos.push(objResposta);
       window.localStorage.setItem(this.nomeForm, objetosJaInclusos);
+    },
+
+    salvar: function() {
+      obj = this.getValues();
+      let valores = [];
+      if (window.localStorage.getItem("data" + $route.params.nome))
+        valores = JSON.parse(
+          window.localStorage.getItem("data" + $route.params.nome)
+        );
+      valores.push(obj);
     }
   }
 };
