@@ -11,6 +11,8 @@ import Produtos from '@/pages/Produtos'
 import ProdutosLista from '@/pages/ProdutosLista'
 import FormVariavel from '@/components/FormVariavel'
 import ListagemVariavel from '@/components/ListagemVariavel'
+import CadCamposVariaveis from '@/pages/CadCamposVariaveis'
+
 Vue.use(Router);
 
 export default new Router({
@@ -58,6 +60,10 @@ export default new Router({
     path: '/list/:nome',
     name: 'List',
     component: ListagemVariavel
+  }, {
+    path: '/cad-tela/:nome',
+    name: 'Tela',
+    component: CadCamposVariaveis
   }],
   mode: "history"
 });
