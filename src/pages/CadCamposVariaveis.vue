@@ -106,21 +106,24 @@ export default {
         exibe: a.exibe,
         type: a.type
       };
-      this.campos.push(campo);
-      let b = JSON.parse(window.localStorage.getItem(this.nome)) || [];
-      b.campos.push(campo);
-      window.localStorage.setItem(this.nome, JSON.stringify(b));
-      this.campo = {};
-      let listaPaginas = [];
-      if (window.localStorage.getItem("paginasCadastradas"))
-        listaPaginas = JSON.parse(
-          window.localStorage.getItem("paginasCadastradas")
+      console.log(a.id && a.nome && a.type);
+      if (a.id && a.nome && a.type) {
+        this.campos.push(campo);
+        let b = JSON.parse(window.localStorage.getItem(this.nome)) || [];
+        b.campos.push(campo);
+        window.localStorage.setItem(this.nome, JSON.stringify(b));
+        this.campo = {};
+        let listaPaginas = [];
+        if (window.localStorage.getItem("paginasCadastradas"))
+          listaPaginas = JSON.parse(
+            window.localStorage.getItem("paginasCadastradas")
+          );
+        listaPaginas.push({ nome: this.nome });
+        window.localStorage.setItem(
+          "paginasCadastradas",
+          JSON.stringify(listaPaginas)
         );
-      listaPaginas.push({ nome: this.nome });
-      window.localStorage.setItem(
-        "paginasCadastradas",
-        JSON.stringify(listaPaginas)
-      );
+      }
     }
   }
 };

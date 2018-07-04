@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    <ul id="dropdown1" class="dropdown-content col s12 l4 m5">
+    <ul id="dropdown1" class="dropdown-content">
         <li>
             <router-link to="/cliente/lista">Clientes</router-link>
             <router-link to="/produtos/lista">Produtos</router-link>
@@ -12,9 +12,9 @@
     <nav>
         <div class="nav-wrapper teal">
             <router-link to="/" class="brand-logo col s6"><i class="material-icons">calendar_today</i>Agenda</router-link>
-            <ul id="nav-mobile" class="right col s6">
+            <ul id="nav-mobile" class="right col s6 m12 l12">
                 <li class="col l12" v-if="login">
-                    <a class="dropdown-trigger" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i></a>
+                    <a class="dropdown-trigger" data-target="dropdown1">Opções<i class="material-icons right">arrow_drop_down</i></a>
                 </li>
             </ul>
         </div>
