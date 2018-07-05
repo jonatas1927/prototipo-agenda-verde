@@ -10,8 +10,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="objeto in lista" :key="objeto.id">
-          <td v-for="attr of atributosExibe" :key="attr.id" v-if="attr.exibe">
+        <tr v-for="objeto in lista" :key="objeto">
+          <td v-for="attr in atributosExibe.campos" :key="attr.id">
             {{ objeto[attr.nome] }}
           </td>
         </tr>

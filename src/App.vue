@@ -3,10 +3,10 @@
     <ul id="dropdown1" class="dropdown-content">
         <li>
             <router-link to="/cliente/lista">Clientes</router-link>
-            <router-link to="/produtos/lista">Produtos</router-link>
+            <!-- <router-link to="/produtos/lista">Produtos</router-link> -->
             <router-link to="/eventos-dia">Eventos em Lista</router-link>
-            <router-link to="/cad-tela/">Cadastro de Tela</router-link>
             <router-link v-for="pag in listaPaginas" :to="'/list/'+pag.nome" :key="pag.nome">{{pag.nome.toUpperCase()}}</router-link>
+            <router-link to="/cad-tela/">Cadastro de Tela</router-link>
         </li>
     </ul>
     <nav>

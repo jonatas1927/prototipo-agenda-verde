@@ -60,11 +60,12 @@ export default {
     getValues: function() {
       let objResposta = {};
       this.pagina.campos.forEach(campo => {
-        objResposta[campo.nome] = document
-          .getElementById("campo" + campo.id).value
+        objResposta[campo.nome] = document.getElementById(
+          "campo" + campo.id
+        ).value;
       });
       return objResposta;
-      // console.log(objResposta); 
+      // console.log(objResposta);
       // let objetosJaInclusos = [];
       // if (window.localStorage.getItem(this.nomeForm))
       //   objetosJaInclusos = JSON.parse(
@@ -78,26 +79,28 @@ export default {
       //   });
       // } else objetosJaInclusos.push(objResposta);
       // window.localStorage.setItem(this.nomeForm, objetosJaInclusos);
-
     },
 
     salvar: function() {
       let objResposta = {};
       this.pagina.campos.forEach(campo => {
-        objResposta[campo.nome] = document
-          .getElementById(campo.id).value
+        objResposta[campo.nome] = document.getElementById(campo.id).value;
       });
-      console.log(objResposta)
+      console.log(objResposta);
       let valores = [];
       if (window.localStorage.getItem("data" + this.$route.params.nome))
         valores = JSON.parse(
           window.localStorage.getItem("data" + this.$route.params.nome)
         );
       valores.push(objResposta);
-      window.localStorage.setItem("data" + this.$route.params.nome, JSON.stringify(valores))
+      window.localStorage.setItem(
+        "data" + this.$route.params.nome,
+        JSON.stringify(valores)
+      );
+      this.cancelar();
     },
-    cancelar: function (){
-      this.$router.back()
+    cancelar: function() {
+      this.$router.back();
     }
   }
 };
