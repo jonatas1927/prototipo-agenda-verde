@@ -11,12 +11,13 @@
       </thead>
       <tbody>
         <tr v-for="objeto in lista" :key="objeto.id">
-          <td v-for="attr in atributosExibe" :key="attr" v-if="attr.exibe">
-            {{ objeto[attr] }}
+          <td v-for="attr in atributosExibe" :key="attr.id">
+            {{ objeto[attr.nome] }}
           </td>
         </tr>
       </tbody>
     </table>
+    <a class="waves-effect waves-light btn"  v-on:click="Cadastrar()">Cadastrar</a>
   </div>
 </div>
 </template>
@@ -35,6 +36,11 @@ export default {
   },
   mounted: function() {
     console.log("hasuhsauh");
+  }, methods: {
+    Cadastrar: function () {
+      console.log(this)
+      this.$router.push('/form/' + this.$route.params.nome)
+    }
   }
 };
 </script>

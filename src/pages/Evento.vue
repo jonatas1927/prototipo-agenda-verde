@@ -14,9 +14,9 @@
                 <input type="text" id="Horario" v-model="horario">
                 <label for="Horario">Horario</label>
             </div>
-            <div class=" input-field col s12 m12 l6">
-                <input type="number" id="horasEstimadas" class="validate" v-model="horasEstimadas">
-                <label for="horasEstimadas">Horas Estimadas</label>
+            <div class="input-field col s12 l3">
+                <input type="text" id="HorarioFinal" v-model="horarioFinal">
+                <label for="HorarioFinal">Horario Final</label>
             </div>
             <div class=" input-field col s12 m12 l6">
                 <input type="text" id="local" class="validate" disabled v-model="local">
@@ -32,9 +32,19 @@
                   </div>
                 </div>
               </div>
+              <div v-for="item in demaisItens" :key="item">
+                <div class="input-field col s12">
+                  <select>
+                    <option value="" disabled selected>Escolha a sua opção</option>
+                    <option v-for="obj in buscaObjetos(item)" :key="obj.id" :value="obj"></option>
+                  </select>
+                  <label>{{item}}</label>
+                </div>
+              </div>
             </div>
             <div class=" input-field col s12 m12 l6">
               <a class="waves-effect waves-light btn" v-on:click="salvar()"><i class="material-icons right">save</i>Salvar</a>
+              <a class="waves-effect waves-light btn" v-on:click="cancelar()"><i class="material-icons right">cancel</i>Cancelar</a>
             </div>
         </div>
     </form>
@@ -51,9 +61,10 @@ export default {
       title: "",
       start: this.$route.params.day,
       horario: null,
-      horasEstimadas: "",
-      local: "Hospital de Clinicas Gerais",
-      Cliente: ''
+      horarioFinal: "",
+      local: "SETREM",
+      Cliente: '',
+      demaisItens: JSON.parse(window.localStorage.getItem('itensEventos'))
     };
   },
   methods: {
@@ -61,9 +72,18 @@ export default {
       let data = this._data;
       new moment(data.start);
       console.log(this);
+      const dia = data.start;
       data.start = data.start + "T" + data.horario;
+      data.end = dia + 'T' + data.horarioFinal
       console.log(data);
       eventosClass.adicionar(data);
+      this.$router.push('/')
+    },
+    cancelar: function () {
+      this.$router.push('/')
+    },
+    buscaObjetos: function (item){
+      return window.localStorage.getItem(item);
     }
   },
   mounted: function() {

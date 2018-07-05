@@ -34,6 +34,12 @@
                 <span>Exibir</span>
             </label>
           </div>
+          <div class="input-field col s2 l1">
+            <label>
+              <input type="checkbox" v-model="Evento" />
+                <span>Vai p/ Eventos</span>
+            </label>
+          </div>
           <a class="waves-effect waves-light btn"  v-on:click="adicionarCampo()">Adicionar Campo</a>
         </div>
         <div id="table">
@@ -88,14 +94,16 @@ export default {
     return {
       nome: this.$route.params.nome,
       campo: {},
-      campos:
-        window.localStorage.getItem(this.$route.params.nome) !== null
+      campos:window.localStorage.getItem(this.$route.params.nome)
           ? JSON.parse(window.localStorage.getItem(this.$route.params.nome))
               .campos
-          : []
+          : [],
+      Evento: false
     };
   },
-  mounted: function() {},
+  mounted: function() {
+
+  },
   methods: {
     adicionarCampo: function() {
       const a = this.campo;
@@ -109,7 +117,7 @@ export default {
       console.log(a.id && a.nome && a.type);
       if (a.id && a.nome && a.type) {
         this.campos.push(campo);
-        let b = JSON.parse(window.localStorage.getItem(this.nome)) || [];
+        let b = JSON.parse(window.localStorage.getItem(this.nome)) || {campos: []};
         b.campos.push(campo);
         window.localStorage.setItem(this.nome, JSON.stringify(b));
         this.campo = {};
@@ -123,6 +131,15 @@ export default {
           "paginasCadastradas",
           JSON.stringify(listaPaginas)
         );
+
+        if(this.Evento) {
+          let camposEvento = [];
+          if(window.localStorage.getItem('itensEvento'))
+            camposEvento = JSON.parse(window.localStorage.getItem('itensEvento'))
+          if(camposEvento.indexOf(this.name) == -1)
+          camposEvento.push(this.name)
+          window.localStorage.setItem('itensEvento', JSON.stringify(camposEvento));
+        }
       }
     }
   }
