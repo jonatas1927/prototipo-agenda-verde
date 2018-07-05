@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr v-for="objeto in lista" :key="objeto.id">
-          <td v-for="attr in atributosExibe" :key="attr.id">
+          <td v-for="attr of atributosExibe" :key="attr.id" v-if="attr.exibe">
             {{ objeto[attr.nome] }}
           </td>
         </tr>
@@ -36,10 +36,11 @@ export default {
   },
   mounted: function() {
     console.log("hasuhsauh");
-  }, methods: {
-    Cadastrar: function () {
-      console.log(this)
-      this.$router.push('/form/' + this.$route.params.nome)
+  },
+  methods: {
+    Cadastrar: function() {
+      console.log(this);
+      this.$router.push("/form/" + this.$route.params.nome);
     }
   }
 };

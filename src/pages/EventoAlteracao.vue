@@ -41,7 +41,7 @@ export default {
       start: this.$route.params.day,
       horario: null,
       horasEstimadas: "",
-      local: "Hospital de Clinicas Gerais"
+      local: "SETREM"
     };
   },
   methods: {
